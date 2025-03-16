@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="instructions">Click on the microphone and say the names of the animals.</div> <!-- Updated instruction for the game -->
+    <div id="game-container">
+        <div id="review-container">
+            <div id="review-area" class="box">Review</div>
+            <div id="review-table" class="image-table">
+                <div class="image-cell" id="review-cell-1"></div>
+                <div class="image-cell" id="review-cell-2"></div>
+                <div class="image-cell" id="review-cell-3"></div>
+                <div class="image-cell" id="review-cell-4"></div>
+            </div>
+        </div>
+        <div id="card-area">
+            <img id="card-image" src="" alt="Card Image">
+            <button id="microphone-button"><img src="microphone.png" alt="Microphone" class="microphone-icon"></button> <!-- Microphone button with an image -->
+            <button id="replay-button" style="display: none;">Replay</button>
+        </div>
+        <div id="correct-container">
+            <div id="correct-area" class="box">Correct</div>
+            <div id="correct-table" class="image-table">
+                <div class="image-cell" id="correct-cell-1"></div>
+                <div class="image-cell" id="correct-cell-2"></div>
+                <div class="image-cell" id="correct-cell-3"></div>
+                <div class="image-cell" id="correct-cell-4"></div>
+            </div>
+            <div id="score" class="score-box"></div> <!-- New element for the score -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
