@@ -134,6 +134,7 @@ body {
     #game-container {
         flex-direction: row;
         justify-content: center;
+        align-items: flex-start;
     }
 
     #review-container,
@@ -144,5 +145,26 @@ body {
 
     #card-area {
         width: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    #instructions {
+        font-size: 18px; /* Smaller font size for smaller screens */
+    }
+
+    .microphone-icon {
+        width: 48px; /* Smaller size for smaller screens */
+        height: 48px; /* Smaller size for smaller screens */
+    }
+
+    #review-container,
+    #correct-container {
+        margin: 5px 0;
+    }
+
+    #card-area {
+        width: 100%;
+        padding: 10px;
     }
 }
