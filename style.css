@@ -3,9 +3,11 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
+    padding: 10px; /* Add some padding to prevent content from touching the edges */
+    box-sizing: border-box;
 }
 
 #instructions {
@@ -17,10 +19,11 @@ body {
 
 #game-container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     max-width: 1200px;
+    box-sizing: border-box;
 }
 
 #review-container,
@@ -28,8 +31,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
-    margin: 0 20px;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 0;
 }
 
 #review-area,
@@ -39,6 +43,7 @@ body {
     border: 2px solid black;
     text-align: center;
     padding: 10px 20px; /* Match padding of the button */
+    box-sizing: border-box;
 }
 
 .image-table {
@@ -47,33 +52,35 @@ body {
     grid-template-rows: repeat(2, 1fr);
     gap: 0;
     width: 100%;
-    height: 200px; /* Adjust height as needed */
+    max-width: 300px;
+    height: auto;
 }
 
 .image-cell {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px; /* Fixed width for the cell */
-    height: 100px; /* Fixed height for the cell */
+    width: 100%;
+    aspect-ratio: 1; /* Maintain a square aspect ratio */
     border: 1px solid black; /* Optional border for cells */
     overflow: hidden; /* Ensure image doesn't overflow the cell */
+    box-sizing: border-box;
 }
 
 #card-area {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     border: 2px solid black;
     padding: 20px;
     box-sizing: border-box;
+    margin: 10px 0;
 }
 
 #card-image {
     max-width: 100%;
-    max-height: 300px;
-    width: auto;
     height: auto;
 }
 
@@ -120,4 +127,22 @@ body {
     width: 100%; /* Ensure the box is full width */
     display: none; /* Initially hide the score box */
     align-self: center; /* Center the score box */
+}
+
+/* Media Queries for responsive design */
+@media (min-width: 600px) {
+    #game-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #review-container,
+    #correct-container {
+        width: 300px;
+        margin: 0 20px;
+    }
+
+    #card-area {
+        width: 400px;
+    }
 }
