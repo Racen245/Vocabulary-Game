@@ -1,13 +1,14 @@
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+html, body {
+    height: 100%;
     min-height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
     padding: 10px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #instructions {
@@ -59,11 +60,9 @@ body {
 .image-table {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     gap: 0;
     width: 100%;
     max-width: 300px;
-    height: auto;
 }
 
 .image-cell {
@@ -75,7 +74,6 @@ body {
     border: 1px solid black;
     overflow: hidden;
     box-sizing: border-box;
-    height: 50px; /* Reduced height */
 }
 
 #card-area {
@@ -88,26 +86,24 @@ body {
     padding: 20px;
     box-sizing: border-box;
     margin: 10px 0;
-    position: relative;
-    height: 400px;
+    min-height: 200px;
 }
 
 #card-image {
     width: 100%;
-    max-width: 150px; /* Reduced width */
-    height: 150px; /* Reduced height */
+    max-width: 150px;
+    height: auto;
     object-fit: contain;
 }
 
 #microphone-button {
-    margin-top: 20px;
+    margin-top: auto;
     padding: 10px 20px;
     background: none;
     border: none;
     outline: none;
     cursor: pointer;
-    position: absolute;
-    bottom: 20px;
+    position: relative;
 }
 
 .microphone-icon {
@@ -122,48 +118,19 @@ body {
     transform: scale(0.9);
 }
 
-#replay-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    display: none;
-}
-
-.correct-answer,
-.incorrect-answer {
-    width: 50%; /* Reduced width */
-    height: 50%; /* Reduced height */
-    object-fit: contain;
-}
-
-.score-box {
-    font-size: 18px;
-    color: blue;
-    font-weight: bold;
-    border: 2px solid red;
-    padding: 10px;
-    text-align: center;
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: auto;
-    white-space: nowrap;
-}
-
 @media (min-width: 600px) {
     #game-container {
         flex-direction: row;
         justify-content: center;
         align-items: flex-start;
     }
-
+    
     #review-container,
     #correct-container {
         width: 300px;
         margin: 0 20px;
     }
-
+    
     #card-area {
         width: 400px;
     }
@@ -171,47 +138,42 @@ body {
 
 @media (max-width: 600px) {
     #instructions {
-        font-size: 14px; /* Further reduced font size */
+        font-size: 14px;
     }
 
     .speaker-icon {
-        width: 12px; /* Further reduced icon size */
+        width: 12px;
         height: 12px;
     }
 
     .microphone-icon {
-        width: 20px; /* Further reduced icon size */
+        width: 20px;
         height: 20px;
     }
 
     #review-container,
     #correct-container {
-        width: 80%; /* Further reduced width */
+        width: 90%;
         margin: 5px 0;
     }
 
     #card-area {
-        width: 80%; /* Further reduced width */
-        padding: 5px; /* Further reduced padding */
-        height: 100px; /* Further reduced height */
+        width: 90%;
+        padding: 10px;
+        min-height: 200px;
     }
 
     #card-image {
-        max-width: 120px; /* Further reduced image size */
-        height: 120px;
+        max-width: 120px;
+        height: auto;
     }
 
     #microphone-button {
-        bottom: 5px; /* Adjusted position */
-    }
-
-    #replay-button {
-        margin-top: 5px; /* Further reduced margin */
-        padding: 3px 5px; /* Further reduced padding */
+        margin-top: auto;
     }
 
     .score-box {
-        font-size: 16px; /* Further reduced font size */
-        padding: 3px; /* Further reduced padding */
+        font-size: 16px;
+        padding: 5px;
     }
 }
