@@ -11,7 +11,7 @@ body {
 }
 
 #instructions {
-    font-size: 12px;
+    font-size: 24px;
     color: purple;
     text-align: center;
     margin-bottom: 20px;
@@ -20,8 +20,8 @@ body {
 }
 
 .speaker-icon {
-    width: 12px;
-    height: 12px;
+    width: 24px;
+    height: 24px;
     margin-right: 10px;
     cursor: pointer;
 }
@@ -75,7 +75,6 @@ body {
     border: 1px solid black;
     overflow: hidden;
     box-sizing: border-box;
-    height: 50px; /* Reduced height */
 }
 
 #card-area {
@@ -94,8 +93,8 @@ body {
 
 #card-image {
     width: 100%;
-    max-width: 150px; /* Reduced width */
-    height: 150px; /* Reduced height */
+    max-width: 300px;
+    height: 300px;
     object-fit: contain;
 }
 
@@ -111,8 +110,8 @@ body {
 }
 
 .microphone-icon {
-    width: 25px;
-    height: 25px;
+    width: 36px;
+    height: 36px;
     border: 1px solid lightgray;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.1s ease;
@@ -130,13 +129,13 @@ body {
 
 .correct-answer,
 .incorrect-answer {
-    width: 50%; /* Reduced width */
-    height: 50%; /* Reduced height */
+    width: 50%;
+    height: 50%;
     object-fit: contain;
 }
 
 .score-box {
-    font-size: 18px;
+    font-size: 24px;
     color: blue;
     font-weight: bold;
     border: 2px solid red;
@@ -171,47 +170,21 @@ body {
 
 @media (max-width: 600px) {
     #instructions {
-        font-size: 14px; /* Further reduced font size */
-    }
-
-    .speaker-icon {
-        width: 12px; /* Further reduced icon size */
-        height: 12px;
+        font-size: 18px;
     }
 
     .microphone-icon {
-        width: 20px; /* Further reduced icon size */
-        height: 20px;
+        width: 24px;
+        height: 24px;
     }
 
     #review-container,
     #correct-container {
-        width: 80%; /* Further reduced width */
         margin: 5px 0;
     }
 
     #card-area {
-        width: 80%; /* Further reduced width */
-        padding: 5px; /* Further reduced padding */
-        height: 100px; /* Further reduced height */
-    }
-
-    #card-image {
-        max-width: 120px; /* Further reduced image size */
-        height: 120px;
-    }
-
-    #microphone-button {
-        bottom: 5px; /* Adjusted position */
-    }
-
-    #replay-button {
-        margin-top: 5px; /* Further reduced margin */
-        padding: 3px 5px; /* Further reduced padding */
-    }
-
-    .score-box {
-        font-size: 16px; /* Further reduced font size */
-        padding: 3px; /* Further reduced padding */
+        width: 100%;
+        padding: 10px;
     }
 }
