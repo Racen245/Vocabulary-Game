@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="instructions">Click on the microphone and say the names of the animals.</div> <!-- Updated instruction for the game -->
+    <div id="instructions">
+        <button id="speaker-button" style="background: none; border: none; cursor: pointer;">
+            <img src="Speaker.png" alt="Speaker" class="speaker-icon">
+        </button>
+        Click on the microphone and say the names of the animals.
+    </div>
+    <audio id="instruction-audio" src="Instruction.mp3" preload="auto"></audio> <!-- Preload the audio file -->
     <div id="game-container">
         <div id="review-container">
             <div id="review-area" class="box">Review</div>
@@ -20,7 +26,9 @@
         </div>
         <div id="card-area">
             <img id="card-image" src="" alt="Card Image">
-            <button id="microphone-button"><img src="microphone.png" alt="Microphone" class="microphone-icon"></button> <!-- Microphone button with an image -->
+            <button id="microphone-button">
+                <img src="microphone.png" alt="Microphone" class="microphone-icon">
+            </button>
             <button id="replay-button" style="display: none;">Replay</button>
         </div>
         <div id="correct-container">
@@ -31,7 +39,7 @@
                 <div class="image-cell" id="correct-cell-3"></div>
                 <div class="image-cell" id="correct-cell-4"></div>
             </div>
-            <div id="score" class="score-box"></div> <!-- New element for the score -->
+            <div id="score" class="score-box"></div>
         </div>
     </div>
     <script src="script.js"></script>

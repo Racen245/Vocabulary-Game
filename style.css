@@ -6,15 +6,24 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
-    padding: 10px; /* Add some padding to prevent content from touching the edges */
+    padding: 10px;
     box-sizing: border-box;
 }
 
 #instructions {
-    font-size: 24px; /* Large font size */
-    color: purple; /* Purple color */
+    font-size: 24px;
+    color: purple;
     text-align: center;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.speaker-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 #game-container {
@@ -31,6 +40,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100%;
     max-width: 300px;
     margin: 10px 0;
@@ -42,7 +52,7 @@ body {
     height: auto;
     border: 2px solid black;
     text-align: center;
-    padding: 10px 20px; /* Match padding of the button */
+    padding: 10px 20px;
     box-sizing: border-box;
 }
 
@@ -61,9 +71,9 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    aspect-ratio: 1; /* Maintain a square aspect ratio */
-    border: 1px solid black; /* Optional border for cells */
-    overflow: hidden; /* Ensure image doesn't overflow the cell */
+    aspect-ratio: 1;
+    border: 1px solid black;
+    overflow: hidden;
     box-sizing: border-box;
 }
 
@@ -77,11 +87,15 @@ body {
     padding: 20px;
     box-sizing: border-box;
     margin: 10px 0;
+    position: relative;
+    height: 400px;
 }
 
 #card-image {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    object-fit: contain;
 }
 
 #microphone-button {
@@ -91,16 +105,20 @@ body {
     border: none;
     outline: none;
     cursor: pointer;
+    position: absolute;
+    bottom: 20px;
 }
 
 .microphone-icon {
-    width: 72px; /* Triple the original size */
-    height: 72px; /* Triple the original size */
-    transition: transform 0.1s ease; /* Smooth transition for the click effect */
+    width: 36px;
+    height: 36px;
+    border: 1px solid lightgray;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s ease;
 }
 
 #microphone-button:active .microphone-icon {
-    transform: scale(0.9); /* Scale down the image slightly when clicked */
+    transform: scale(0.9);
 }
 
 #replay-button {
@@ -111,25 +129,27 @@ body {
 
 .correct-answer,
 .incorrect-answer {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensure the image fits within the cell without altering cell size */
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
 }
 
 .score-box {
-    font-size: 24px; /* Big size font */
-    color: blue; /* Color blue */
-    font-weight: bold; /* Bold text */
-    border: 2px solid red; /* Red border */
+    font-size: 24px;
+    color: blue;
+    font-weight: bold;
+    border: 2px solid red;
     padding: 10px;
     text-align: center;
-    margin-top: 20px;
-    width: 100%; /* Ensure the box is full width */
-    display: none; /* Initially hide the score box */
-    align-self: center; /* Center the score box */
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    white-space: nowrap;
 }
 
-/* Media Queries for responsive design */
 @media (min-width: 600px) {
     #game-container {
         flex-direction: row;
@@ -150,21 +170,47 @@ body {
 
 @media (max-width: 600px) {
     #instructions {
-        font-size: 18px; /* Smaller font size for smaller screens */
+        font-size: 16px; /* Reduced font size */
+    }
+
+    .speaker-icon {
+        width: 16px; /* Reduced icon size */
+        height: 16px;
     }
 
     .microphone-icon {
-        width: 48px; /* Smaller size for smaller screens */
-        height: 48px; /* Smaller size for smaller screens */
+        width: 24px; /* Reduced icon size */
+        height: 24px;
     }
 
     #review-container,
     #correct-container {
+        width: 90%; /* Reduced width */
         margin: 5px 0;
     }
 
     #card-area {
-        width: 100%;
-        padding: 10px;
+        width: 90%; /* Reduced width */
+        padding: 10px; /* Reduced padding */
+        height: 300px; /* Reduced height */
+    }
+
+    #card-image {
+        max-width: 200px; /* Reduced image size */
+        height: 200px;
+    }
+
+    #microphone-button {
+        bottom: 10px; /* Adjusted position */
+    }
+
+    #replay-button {
+        margin-top: 10px; /* Reduced margin */
+        padding: 5px 10px; /* Reduced padding */
+    }
+
+    .score-box {
+        font-size: 20px; /* Reduced font size */
+        padding: 5px; /* Reduced padding */
     }
 }

@@ -4,6 +4,7 @@ let currentCardIndex = 0;
 const cardImage = document.getElementById("card-image");
 const microphoneButton = document.getElementById("microphone-button");
 const replayButton = document.getElementById("replay-button");
+const speakerButton = document.getElementById("speaker-button");
 const reviewCells = [
     document.getElementById("review-cell-1"),
     document.getElementById("review-cell-2"),
@@ -17,22 +18,23 @@ const correctCells = [
     document.getElementById("correct-cell-4")
 ];
 const scoreElement = document.getElementById("score");
+const instructionAudio = document.getElementById("instruction-audio"); // Reference to the audio element
 let reviewIndex = 0;
 let correctIndex = 0;
 
+const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.continuous = true;
+recognition.lang = "en-US";
+
 function loadCard() {
-    if (cardImage) {
-        if (currentCardIndex < images.length) {
-            cardImage.src = images[currentCardIndex];
-            cardImage.classList.remove("correct-answer", "incorrect-answer");
-        } else {
-            cardImage.style.display = "none";
-            microphoneButton.style.display = "none";
-            replayButton.style.display = "block";  // Display the replay button
-            displayScore(); // Display the score at the end
-        }
+    if (currentCardIndex < images.length) {
+        cardImage.src = images[currentCardIndex];
+        cardImage.classList.remove("correct-answer", "incorrect-answer");
     } else {
-        console.error("cardImage is null");
+        cardImage.style.display = "none";
+        replayButton.style.display = "block";
+        displayScore();
+        recognition.stop();
     }
 }
 
@@ -48,26 +50,30 @@ function displayScore() {
     const score = correctIndex;
     const total = images.length;
     scoreElement.textContent = `You scored: ${score}/${total}`;
-    scoreElement.style.display = "block"; // Show the score box
+    scoreElement.style.display = "block";
 }
 
-microphoneButton.addEventListener("click", () => {
-    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = "en-US"; // Set the language to English (United States)
+recognition.onresult = (event) => {
+    const spokenWord = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+    console.log(`Recognized word: ${spokenWord}, Expected word: ${words[currentCardIndex]}`);
+    if (spokenWord === words[currentCardIndex]) {
+        appendImageToCell(correctCells, correctIndex, "correct-answer");
+        correctIndex++;
+    } else {
+        appendImageToCell(reviewCells, reviewIndex, "incorrect-answer");
+        reviewIndex++;
+    }
+    currentCardIndex++;
+    loadCard();
+};
 
-    recognition.onresult = (event) => {
-        const spokenWord = event.results[0][0].transcript.toLowerCase();
-        if (spokenWord === words[currentCardIndex]) {
-            appendImageToCell(correctCells, correctIndex, "correct-answer");
-            correctIndex++;
-        } else {
-            appendImageToCell(reviewCells, reviewIndex, "incorrect-answer");
-            reviewIndex++;
-        }
-        currentCardIndex++;
-        loadCard();
-    };
+recognition.onerror = (event) => {
+    console.error("Recognition error:", event.error);
+};
+
+microphoneButton.addEventListener("click", () => {
     recognition.start();
+    microphoneButton.style.display = "none";
 });
 
 replayButton.addEventListener("click", () => {
@@ -76,14 +82,31 @@ replayButton.addEventListener("click", () => {
     reviewIndex = 0;
     cardImage.style.display = "block";
     microphoneButton.style.display = "block";
-    replayButton.style.display = "none";  // Hide the replay button
+    replayButton.style.display = "none";
     reviewCells.forEach(cell => cell.innerHTML = "");
     correctCells.forEach(cell => cell.innerHTML = "");
-    scoreElement.textContent = ""; // Clear the score
-    scoreElement.style.display = "none"; // Hide the score box
+    scoreElement.textContent = "";
+    scoreElement.style.display = "none";
     loadCard();
+});
+
+speakerButton.addEventListener("click", () => {
+    if (instructionAudio) {
+        instructionAudio.play().catch(error => {
+            console.error("Error playing audio:", error);
+            // Fallback to text-to-speech if audio playback fails
+            const utterance = new SpeechSynthesisUtterance(instructionsElement.textContent);
+            utterance.lang = 'en-US';
+            window.speechSynthesis.speak(utterance);
+        });
+    }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
     loadCard();
+    if (instructionAudio) {
+        instructionAudio.play().catch(error => {
+            console.error("Error playing audio:", error);
+        });
+    }
 });
